@@ -10,7 +10,7 @@ const Home = (reducers: any) => {
 
   const {pokemons, dispatch} = reducers;
 
-  console.log(pokemons);
+  console.log(pokemons.pokemons);
 
   useEffect( () => {
     pokemonActions.getPokemon(dispatch, offset);
@@ -19,11 +19,11 @@ const Home = (reducers: any) => {
   return (
     <div>
       <button onClick={ () => setOffset(offset + 20) } > click </button>
-      {
+      {/* {
         pokemons.map( (pokemon: any)  => 
           <p>{pokemon.name}</p> 
         )
-      }
+      } */}
     </div>
   );
 }
