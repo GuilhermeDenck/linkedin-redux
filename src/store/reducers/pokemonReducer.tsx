@@ -1,7 +1,7 @@
 interface PokemonDTO {
   activePokemon: object,
   data: {
-
+    pokemon_species: {}[]
   }[]
 }
 
