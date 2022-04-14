@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { connect } from 'react-redux';
 import { bindActionCreators } from 'redux';
 
@@ -6,16 +6,19 @@ import * as pokemonActions from '../../store/actions/pokemonAction';
 
 const Home = (reducers: any) => {
 
+  const [ offset, setOffset ] = useState<number>(0);
+
   const {pokemons, dispatch} = reducers;
 
   console.log(pokemons);
 
   useEffect( () => {
-    pokemonActions.getPokemon(dispatch);
-  },[] )
+    pokemonActions.getPokemon(dispatch, offset);
+  },[offset] )
 
   return (
     <div>
+      <button onClick={ () => setOffset(offset + 20) } > click </button>
       {
         pokemons.map( (pokemon: any)  => 
           <p>{pokemon.name}</p> 
