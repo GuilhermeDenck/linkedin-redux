@@ -1,13 +1,13 @@
 interface PokemonDTO {
   activePokemon: object,
-  data: {
+  pokemons: {
     pokemon_species: {}[]
   }[]
 }
 
 const INITIAL_STATE = {
   activePokemon: {},
-  data: []
+  pokemons: []
 }
 
 const pokemonReducer = ( state: PokemonDTO = INITIAL_STATE, action: any ) => {
@@ -15,7 +15,14 @@ const pokemonReducer = ( state: PokemonDTO = INITIAL_STATE, action: any ) => {
   if(action.type === 'SET_POKEMON') {
     return {
       ...state,
-      activePokemon: action.data
+      activePokemon: action.pokemons
+    }
+  }
+
+  if(action.type === 'SET_POKEMONS') {
+    return {
+      ...state,
+      pokemons: action.pokemons
     }
   }
 
