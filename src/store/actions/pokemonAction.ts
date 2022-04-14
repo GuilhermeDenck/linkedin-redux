@@ -18,22 +18,28 @@ export const getPokemon = async (dispatch: any, offset: number) => {
 }
 
 export const getDetailsPokemon = async (dispatch:any ,results: any) => {
+  const arrayPoke: any = []
   results.forEach( async (element: any) => {
     try {
       const {data} = await axios.get(element.url);
-      const PokemonsDetails = {
-        type: 'SET_POKEMONS_DETAILS',
-        pokemonsDetails: {
+      const Details = {
+        details: {
           id: data.id,
           picture: data.sprites.front_default,
           type: data.types
         }
       }
-      console.log(PokemonsDetails);
-      
-      dispatch(PokemonsDetails);
+      arrayPoke.push(Details);
     } catch (error) {
       console.log(error);
     }
   });
+
+  const PokemonsDetails = {
+    type: 'SET_POKEMON_DETAILS',
+    pokemonsDetails: arrayPoke
+  }
+  console.log(PokemonsDetails);
+  
+  dispatch(PokemonsDetails);
 }
