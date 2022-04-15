@@ -13,11 +13,10 @@ const Home = (reducers: any) => {
   const [setSearch, setSearchPokemon] = useState<boolean>(false);
   const [pokeFind, setPokeFind] = useState<any>({});
 
-
   const handleSearch = (value: string) => {
     const regex = new RegExp(value, 'gim');
 
-    const pokemonsFiltered = pokemons.pokemonsDetails.filter((pokemon: any) => {
+    const pokemonsFiltered = pokemons.filter((pokemon: any) => {
       return pokemon.name.match(regex);
     });
 
@@ -44,15 +43,15 @@ const Home = (reducers: any) => {
         {
            setSearch ? pokeFind.map( (pokemon:any ) => (
             <li key={pokemon.id}>
-              <CardPokemon onClick={ () => pokemonActions.setPokemonDetails(pokemon.id, pokemons.pokemonsDetails, dispatch) }>
+              <CardPokemon onClick={ () =>  navigate(`/${pokemon.id}`) }>
                 <p>{pokemon.id}</p>
                 <ImgPokemon src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`} alt={pokemon.name} />
                 <p>{pokemon.name}</p>
               </CardPokemon>
           </li>
-           )) : pokemons.pokemonsDetails.map( (pokemon:any ) => (
+           )) : pokemons.map( (pokemon:any ) => (
             <li key={pokemon.id}>
-              <CardPokemon onClick={ () => pokemonActions.setPokemonDetails(pokemon.id, pokemons.pokemonsDetails, dispatch) }>
+              <CardPokemon onClick={ () => navigate(`/${pokemon.id}`) }>
                 <p>{pokemon.id}</p>
                 <ImgPokemon src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.id}.png`} alt={pokemon.name} />
                 <p>{pokemon.name}</p> 
@@ -66,7 +65,7 @@ const Home = (reducers: any) => {
 }
 
 const mapStateToProps = (state: any) => ({
-  pokemons: state.pokemonReducer
+  pokemons: state.pokemonReducer.pokemons
 });
 
 export default connect(mapStateToProps)(Home);

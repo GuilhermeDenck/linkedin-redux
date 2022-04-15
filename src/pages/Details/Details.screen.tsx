@@ -3,15 +3,15 @@ import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { ContainerDetails, ContainerStats, HeaderDetails } from './Details.style';
 
+import * as pokemonActions from '../../store/actions/pokemonAction';
+
 const Details = (reducers: any) => {
   const { id } = useParams();
   const { pokemons, dispatch } = reducers;
   const { type } = pokemons;
 
   useEffect(() => {
-    // console.log(id);
-    console.log(pokemons);
-    console.log(type[0].type.name);
+    pokemonActions.setPokemonDetails(id, dispatch)
   }, []);
 
   return (

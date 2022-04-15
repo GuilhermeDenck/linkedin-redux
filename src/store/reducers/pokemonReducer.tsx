@@ -1,26 +1,26 @@
 interface PokemonDTO {
   activePokemon: {},
-  pokemonsDetails: {}[]
+  pokemons: {}[]
 }
 
 const INITIAL_STATE = {
   activePokemon: {},
-  pokemonsDetails: []
+  pokemons: []
 }
 
 const pokemonReducer = ( state: PokemonDTO = INITIAL_STATE, action: any ) => {
 
-  if(action.type === 'SET_POKEMON') {
+  if(action.type === 'SET_POKEMON_DETAILS') {
     return {
       ...state,
       activePokemon: action.activePokemon
     }
   }
 
-  if(action.type === 'SET_POKEMON_DETAILS') {
+  if(action.type === 'SET_POKEMONS') {
     return {
       ...state,
-      pokemonsDetails: [...state.pokemonsDetails ,action.pokemonsDetails]
+      pokemons: [...state.pokemons ,action.pokemons]
     }
   }
 
