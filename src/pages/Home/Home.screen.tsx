@@ -13,12 +13,10 @@ const Home = (reducers: any) => {
   const [setSearch, setSearchPokemon] = useState<boolean>(false);
   const [pokeFind, setPokeFind] = useState<any>({});
 
-  console.log(pokemons.pokemonsDetails);
-
   const handleSearch = (value: string) => {
     const regex = new RegExp(value, 'gim');
 
-    const pokemonsFiltered = pokemons.pokemonsDetails.filter((pokemon: any) => {
+    const pokemonsFiltered = pokemons.filter((pokemon: any) => {
       return pokemon.name.match(regex);
     });
 
@@ -45,15 +43,15 @@ const Home = (reducers: any) => {
         {
            setSearch ? pokeFind.map( (pokemon:any ) => (
             <li key={pokemon.id}>
-              <CardPokemon onClick={ () => pokemonActions.setPokemonDetails(pokemon.id, pokemons.pokemonsDetails, dispatch) }>
+              <CardPokemon onClick={ () => pokemonActions.setPokemonDetails(pokemon.id, pokemons, dispatch, navigate) }>
                 <p>{pokemon.id}</p>
                 <ImgPokemon src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg`} alt={pokemon.name} />
                 <p>{pokemon.name}</p>
               </CardPokemon>
           </li>
-           )) : pokemons.pokemonsDetails.map( (pokemon:any ) => (
+           )) : pokemons.map( (pokemon:any ) => (
             <li key={pokemon.id}>
-              <CardPokemon onClick={ () => pokemonActions.setPokemonDetails(pokemon.id, pokemons.pokemonsDetails, dispatch) }>
+              <CardPokemon onClick={ () => pokemonActions.setPokemonDetails(pokemon.id, pokemons, dispatch, navigate) }>
                 <p>{pokemon.id}</p>
                 <ImgPokemon src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg`} alt={pokemon.name} />
                 <p>{pokemon.name}</p> 
@@ -61,25 +59,13 @@ const Home = (reducers: any) => {
           </li>
            ))
         }
-
-        {/* {
-          pokemons.pokemonsDetails.map( (pokemon: any)  => 
-          <li key={pokemon.id}>
-            <CardPokemon onClick={ () => pokemonActions.setPokemonDetails(pokemon.id, pokemons.pokemonsDetails, dispatch) }>
-              <p>{pokemon.id}</p>
-              <ImgPokemon src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg`} alt={pokemon.name} />
-              <p>{pokemon.name}</p> 
-            </CardPokemon>
-          </li>
-          )
-        } */}
       </ContainerPokemons>
     </Container>
   );
 }
 
 const mapStateToProps = (state: any) => ({
-  pokemons: state.pokemonReducer
+  pokemons: state.pokemonReducer.pokemonsDetails
 });
 
 export default connect(mapStateToProps)(Home);

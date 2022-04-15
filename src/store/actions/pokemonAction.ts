@@ -38,7 +38,7 @@ export const getDetailsPokemon = async (dispatch:any ,results: any) => {
   
 }
 
-export const setPokemonDetails = (idPokemon: number, arrayPokemons:any ,dispatch: any) => {
+export const setPokemonDetails = (idPokemon: number, arrayPokemons:any ,dispatch: any, navigate: any) => {
   console.log(idPokemon);
   console.log(arrayPokemons);
   
@@ -49,4 +49,5 @@ export const setPokemonDetails = (idPokemon: number, arrayPokemons:any ,dispatch
   }
 
   dispatch(active);
+  navigate(`/${idPokemon}`);
 }
