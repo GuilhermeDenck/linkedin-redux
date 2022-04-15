@@ -41,7 +41,7 @@ const Home = (reducers: any) => {
         <h1>Pokédex</h1>
         <input type="text" onChange={ e => handleSearch(e.target.value)}  />
         <button disabled={ offset === 0 } onClick={ () => setOffset(offset - 20)}> Previous </button>
-        <button disabled={ offset >= 150 } onClick={ () => setOffset(offset + 20) } > Next </button>
+        <button disabled={ offset >= 130 } onClick={ () => setOffset(offset + 20) } > Next </button>
       </div>
 
       <ContainerPokemons>

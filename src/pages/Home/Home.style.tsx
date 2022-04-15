@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { color } from '../../components/colors';
 
 export const Container = styled.div`
   display: flex;
@@ -8,6 +7,7 @@ export const Container = styled.div`
   width: 960px;
   background-color: #f7f7f7;
   border-radius: 12px;
+  margin-top: 50px;
 `;
 
 export const ContainerPokemons = styled.ul`
@@ -18,7 +18,6 @@ export const ContainerPokemons = styled.ul`
   justify-items: center;
   width: 100%;
   padding: 20px;
-  margin-top: 40px;
   list-style: none;
 `;
 
@@ -28,8 +27,13 @@ export const ImgPokemon = styled.img`
 `;
 
 export const CardPokemon = styled.button`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
   border: none;
   border-radius: 8px;
   width: 200px;
   height: 190px;
+  padding: 10px;
 `
