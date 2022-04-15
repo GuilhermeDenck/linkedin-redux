@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import * as pokemonActions from '../../store/actions/pokemonAction';
-import { Container, ContainerPokemons, ImgPokemon } from './Home.style';
+import { CardPokemon, Container, ContainerPokemons, ImgPokemon } from './Home.style';
 
 const Home = (reducers: any) => {
 
@@ -46,11 +46,12 @@ const Home = (reducers: any) => {
       <ContainerPokemons>
         {
           pokemons.map( (pokemon: any)  => 
-          <li>
-            <button onClick={ () => pokemonActions.getPokemonDetails(dispatch, pokemon.url.split('/')[6], navigate) }>
-              <ImgPokemon src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.url.split('/')[6]}.svg`} alt="TESTE" />
+          <li key={pokemon.name}>
+            <CardPokemon onClick={ () => pokemonActions.getPokemonDetails(dispatch, pokemon.url.split('/')[6], navigate) }>
+              <p>{pokemon.url.split('/')[6]}</p>
+              <ImgPokemon src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.url.split('/')[6]}.svg`} alt={pokemon.name} />
               <p>{pokemon.name}</p> 
-            </button>
+            </CardPokemon>
           </li>
           )
         }

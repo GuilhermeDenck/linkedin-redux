@@ -8,20 +8,12 @@ import * as pokemonActions from '../../store/actions/pokemonAction';
 //   const navigate = useNavigate();
 
 //   return (
-//     <button
-//       onClick={() =>
-//         pokemonActions.getPokemonDetails(
-//           dispatch,
-//           pokemon.url.split('/')[6],
-//           navigate
-//         )
-//       }
-//     >
+//     <button onClick={() => pokemonActions.getPokemonDetails(dispatch, pokemon.url.split('/')[6], navigate)}>
 //       <img
 //         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${
 //           pokemon.url.split('/')[6]
 //         }.svg`}
-//         alt="TESTE"
+//         alt={pokemon.name}
 //       />
 //       <p>{pokemon.name}</p>
 //     </button>
