@@ -24,6 +24,10 @@ const pokemonReducer = ( state: PokemonDTO = INITIAL_STATE, action: any ) => {
     }
   }
 
+  if(action.type === 'RESET_STATE') {
+    return state = INITIAL_STATE;
+  }
+
   return state;
 }
 
