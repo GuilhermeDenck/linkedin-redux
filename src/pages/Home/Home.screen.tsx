@@ -8,11 +8,27 @@ const Home = (reducers: any) => {
 
   const navigate = useNavigate();
 
-  const [ offset, setOffset ] = useState<number>(0);
-
+  const [offset, setOffset] = useState<number>(0);
   const {pokemons, dispatch} = reducers;
 
-  console.log(pokemons);
+
+  const handleSearch = (value: string) => {
+    const regex = new RegExp(value, 'gim');
+    const filteredPokemons = pokemons.filter((pokemon: any) => {
+      return pokemon.name.match(regex);
+    });
+
+    const Pokemons = {
+      type: 'SET_POKEMONS',
+      pokemons: filteredPokemons
+    }
+
+    if(filteredPokemons.length !== 0) {
+      dispatch(Pokemons);
+    } else {
+      pokemonActions.getPokemon(dispatch, offset);
+    }
+  }
 
   useEffect( () => {
     pokemonActions.getPokemon(dispatch, offset);
@@ -21,6 +37,7 @@ const Home = (reducers: any) => {
   return (
     <div>
       <div>
+        <input type="text" onChange={ e => handleSearch(e.target.value)}  />
         <button disabled={ offset === 0 } onClick={ () => setOffset(offset - 20)}> Previous </button>
         <button disabled={ offset >= 150 } onClick={ () => setOffset(offset + 20) } > Next </button>
       </div>
