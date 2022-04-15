@@ -13,23 +13,18 @@ export const getDetailsPokemon = async (dispatch:any ,results: any) => {
   results.forEach( async (element: any) => {
     try {
       const {data} = await axios.get(element.url);
-      const Details = {
+      const pokemons = {
         id: data.id,
         name: data.name,
-        picture: data.sprites.front_default,
-        type: data.types,
-        weight: data.weight,
-        height: data.height,
-        abilities: data.abilities,
-        stats: data.stats
+        type: data.types
       }
 
-      const PokemonsDetails = {
-        type: 'SET_POKEMON_DETAILS',
-        pokemonsDetails: Details
+      const Pokemons = {
+        type: 'SET_POKEMONS',
+        pokemons: pokemons
       }
       
-      dispatch(PokemonsDetails);
+      dispatch(Pokemons);
     } catch (error) {
       console.log(error);
     }
@@ -38,16 +33,31 @@ export const getDetailsPokemon = async (dispatch:any ,results: any) => {
   
 }
 
-export const setPokemonDetails = (idPokemon: number, arrayPokemons:any ,dispatch: any, navigate: any) => {
-  console.log(idPokemon);
-  console.log(arrayPokemons);
+export const setPokemonDetails = async (idPokemon?: string, dispatch?: any) => {  
   
-  const PokemonSelected = arrayPokemons.find( (e: any) => idPokemon === e.id )
-  const active = {
-    type: 'SET_POKEMON',
-    activePokemon: PokemonSelected
-  }
+  try {
+    const details = await axios.get(`https://pokeapi.co/api/v2/pokemon/${idPokemon}/`);
+    const species = await axios.get(`https://pokeapi.co/api/v2/pokemon-species/${idPokemon}/`);
 
-  dispatch(active);
-  navigate(`/${idPokemon}`);
+    const PokemonDetailsObj = {
+      id: details.data.id,
+      name: details.data.name,
+      picture: details.data.sprites.front_default,
+      type: details.data.types,
+      weight: details.data.weight,
+      height: details.data.height,
+      abilities: details.data.abilities,
+      stats: details.data.stats,
+      text: species.data.flavor_text_entries[10].flavor_text
+    }
+
+    const PokemonDetails = {
+      type: 'SET_POKEMON_DETAILS',
+      activePokemon: PokemonDetailsObj
+    }
+
+    dispatch(PokemonDetails);
+  } catch (error) {
+    console.log(error); 
+  }
 }

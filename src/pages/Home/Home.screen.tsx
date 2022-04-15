@@ -43,7 +43,7 @@ const Home = (reducers: any) => {
         {
            setSearch ? pokeFind.map( (pokemon:any ) => (
             <li key={pokemon.id}>
-              <CardPokemon onClick={ () => pokemonActions.setPokemonDetails(pokemon.id, pokemons, dispatch, navigate) }>
+              <CardPokemon onClick={ () =>  navigate(`/${pokemon.id}`) }>
                 <p>{pokemon.id}</p>
                 <ImgPokemon src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg`} alt={pokemon.name} />
                 <p>{pokemon.name}</p>
@@ -51,7 +51,7 @@ const Home = (reducers: any) => {
           </li>
            )) : pokemons.map( (pokemon:any ) => (
             <li key={pokemon.id}>
-              <CardPokemon onClick={ () => pokemonActions.setPokemonDetails(pokemon.id, pokemons, dispatch, navigate) }>
+              <CardPokemon onClick={ () => navigate(`/${pokemon.id}`) }>
                 <p>{pokemon.id}</p>
                 <ImgPokemon src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg`} alt={pokemon.name} />
                 <p>{pokemon.name}</p> 
@@ -65,7 +65,7 @@ const Home = (reducers: any) => {
 }
 
 const mapStateToProps = (state: any) => ({
-  pokemons: state.pokemonReducer.pokemonsDetails
+  pokemons: state.pokemonReducer.pokemons
 });
 
 export default connect(mapStateToProps)(Home);
