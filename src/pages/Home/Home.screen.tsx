@@ -48,7 +48,7 @@ const Home = (reducers: any) => {
         {
           pokemons.map( (pokemon: any)  => 
           <li key={pokemon.name}>
-            <CardPokemon onClick={ () => pokemonActions.getPokemonDetails(dispatch, pokemon.url.split('/')[6], navigate) }>
+            <CardPokemon onClick={ () => console.log('teste') }>
               <p>{pokemon.url.split('/')[6]}</p>
               <ImgPokemon src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.url.split('/')[6]}.svg`} alt={pokemon.name} />
               <p>{pokemon.name}</p> 
