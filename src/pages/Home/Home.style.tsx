@@ -12,7 +12,7 @@ export const Container = styled.div`
 
 export const ContainerPokemons = styled.ul`
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr 1fr;
+  grid-template-columns: repeat(4, 1fr);
   row-gap: 20px;
   align-items: center;
   justify-items: center;
@@ -36,4 +36,5 @@ export const CardPokemon = styled.button`
   width: 200px;
   height: 190px;
   padding: 10px;
+  cursor: pointer;
 `

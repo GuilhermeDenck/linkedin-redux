@@ -45,6 +45,15 @@ export const getDetailsPokemon = async (dispatch:any ,results: any) => {
 
 }
 
-export const setPokemonDetails = (idPokemon: number, dispatch: any) => {
+export const setPokemonDetails = (idPokemon: number, arrayPokemons:any ,dispatch: any) => {
+  console.log(idPokemon);
+  console.log(arrayPokemons);
+  
+  const PokemonSelected = arrayPokemons.find( (e: any) => idPokemon === e.id )
+  const active = {
+    type: 'SET_POKEMON',
+    activePokemon: PokemonSelected
+  }
 
+  dispatch(active);
 }

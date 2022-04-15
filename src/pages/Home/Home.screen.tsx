@@ -48,7 +48,7 @@ const Home = (reducers: any) => {
         {
           pokemons.pokemonsDetails.map( (pokemon: any)  => 
           <li key={pokemon.id}>
-            <CardPokemon onClick={ () => console.log(pokemon.id) }>
+            <CardPokemon onClick={ () => pokemonActions.setPokemonDetails(pokemon.id, pokemons.pokemonsDetails, dispatch) }>
               <p>{pokemon.id}</p>
               <ImgPokemon src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg`} alt={pokemon.name} />
               <p>{pokemon.name}</p> 
