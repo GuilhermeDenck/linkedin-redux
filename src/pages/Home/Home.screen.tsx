@@ -11,7 +11,10 @@ const Home = (reducers: any) => {
 
   const [offset, setOffset] = useState<number>(0);
   const {pokemons, dispatch} = reducers;
-
+  console.log(reducers);
+  console.log(pokemons.pokemons.length);
+  console.log(pokemons.pokemonsDetails.length);
+  
 
   const handleSearch = (value: string) => {
     const regex = new RegExp(value, 'gim');
@@ -46,11 +49,11 @@ const Home = (reducers: any) => {
 
       <ContainerPokemons>
         {
-          pokemons.map( (pokemon: any)  => 
+          pokemons.pokemonsDetails.map( (pokemon: any)  => 
           <li key={pokemon.name}>
-            <CardPokemon onClick={ () => console.log('teste') }>
-              <p>{pokemon.url.split('/')[6]}</p>
-              <ImgPokemon src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.url.split('/')[6]}.svg`} alt={pokemon.name} />
+            <CardPokemon onClick={ () => console.log(pokemon.url.split('/')[6]) }>
+              {/* <p>{pokemon.url.split('/')[6]}</p> */}
+              {/* <ImgPokemon src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.url.split('/')[6]}.svg`} alt={pokemon.name} /> */}
               <p>{pokemon.name}</p> 
             </CardPokemon>
           </li>
@@ -62,7 +65,7 @@ const Home = (reducers: any) => {
 }
 
 const mapStateToProps = (state: any) => ({
-  pokemons: state.pokemonReducer.pokemons
+  pokemons: state.pokemonReducer
 });
 
 export default connect(mapStateToProps)(Home);
