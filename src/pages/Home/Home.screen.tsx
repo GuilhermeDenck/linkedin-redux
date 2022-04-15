@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 
 import * as pokemonActions from '../../store/actions/pokemonAction';
+import { Container, ContainerPokemons, ImgPokemon } from './Home.style';
 
 const Home = (reducers: any) => {
 
@@ -35,26 +36,26 @@ const Home = (reducers: any) => {
   },[offset] )
 
   return (
-    <div>
+    <Container>
       <div>
         <input type="text" onChange={ e => handleSearch(e.target.value)}  />
         <button disabled={ offset === 0 } onClick={ () => setOffset(offset - 20)}> Previous </button>
         <button disabled={ offset >= 150 } onClick={ () => setOffset(offset + 20) } > Next </button>
       </div>
 
-      <ul>
+      <ContainerPokemons>
         {
           pokemons.map( (pokemon: any)  => 
           <li>
             <button onClick={ () => pokemonActions.getPokemonDetails(dispatch, pokemon.url.split('/')[6], navigate) }>
-              <img src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.url.split('/')[6]}.svg`} alt="TESTE" />
+              <ImgPokemon src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.url.split('/')[6]}.svg`} alt="TESTE" />
               <p>{pokemon.name}</p> 
             </button>
           </li>
           )
         }
-      </ul>
-    </div>
+      </ContainerPokemons>
+    </Container>
   );
 }
 
