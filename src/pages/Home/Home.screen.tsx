@@ -12,6 +12,9 @@ const Home = (reducers: any) => {
   const [offset, setOffset] = useState<number>(0);
   const {pokemons, dispatch} = reducers;
 
+  console.log(pokemons.pokemonsDetails);
+  
+
   const handleSearch = (value: string) => {
     const regex = new RegExp(value, 'gim');
     const filteredPokemons = pokemons.filter((pokemon: any) => {
@@ -41,19 +44,19 @@ const Home = (reducers: any) => {
         <input type="text" onChange={ e => handleSearch(e.target.value)}  />
       </div>
 
-      {/* <ContainerPokemons>
+      <ContainerPokemons>
         {
           pokemons.pokemonsDetails.map( (pokemon: any)  => 
-          <li key={pokemon.name}>
-            <CardPokemon onClick={ () => console.log(pokemon.url.split('/')[6]) }>
-              <p>{pokemon.url.split('/')[6]}</p>
-              <ImgPokemon src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.url.split('/')[6]}.svg`} alt={pokemon.name} />
+          <li key={pokemon.id}>
+            <CardPokemon onClick={ () => console.log(pokemon.id) }>
+              <p>{pokemon.id}</p>
+              <ImgPokemon src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/${pokemon.id}.svg`} alt={pokemon.name} />
               <p>{pokemon.name}</p> 
             </CardPokemon>
           </li>
           )
         }
-      </ContainerPokemons> */}
+      </ContainerPokemons>
     </Container>
   );
 }
