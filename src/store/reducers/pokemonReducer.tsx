@@ -29,7 +29,7 @@ const pokemonReducer = ( state: PokemonDTO = INITIAL_STATE, action: any ) => {
   if(action.type === 'SET_POKEMON_DETAILS') {
     return {
       ...state,
-      pokemonsDetails: action.pokemonsDetails
+      pokemonsDetails: [...state.pokemonsDetails ,action.pokemonsDetails]
     }
   }
 
