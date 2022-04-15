@@ -4,19 +4,11 @@ export const getPokemon = async (dispatch: any) => {
   dispatch({type: 'RESET_STATE'});
   try {
     const {data} = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=151&offset=0`);
-    // sortPokemon(data.results);
     getDetailsPokemon(dispatch, data.results);
   } catch (error) {
     console.log(error);
   }
 }
-
-export const sortPokemon = (data: any) => {
-    
-  data.sort((a: any, b: any) => {
-    return b.id - a.id;
-  })
-};
 
 export const getDetailsPokemon = async (dispatch:any ,results: any) => {
   results.forEach( async (element: any) => {

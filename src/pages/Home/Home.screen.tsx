@@ -13,6 +13,16 @@ const Home = (reducers: any) => {
   const [setSearch, setSearchPokemon] = useState<boolean>(false);
   const [pokeFind, setPokeFind] = useState<any>({});
 
+  
+  const sortPokemon = (data: any) => {
+    data.sort((a: any, b: any) => {
+      return a.id - b.id;
+    })
+  };
+
+  sortPokemon(pokemons)
+  
+
   const handleSearch = (value: string) => {
     const regex = new RegExp(value, 'gim');
 
