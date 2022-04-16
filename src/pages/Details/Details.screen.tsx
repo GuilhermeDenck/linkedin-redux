@@ -9,6 +9,7 @@ import {
   ContainerDetails,
   ContainerStats,
   DivPokemon,
+  GridInfo,
   HeaderDetails,
   ImgPokeball,
   ImgPokemon,
@@ -51,20 +52,32 @@ const Details = (reducers: any) => {
         />
       </DivPokemon>
       <ContainerStats>
-        <Titles><h2>About</h2></Titles>
+        <Titles>
+          <h2>About</h2>
+        </Titles>
+        <GridInfo>
+          <div>
+            <h1>
+              <GiWeight />
+            </h1>
+            <p>{(pokemons.weight * 100) / 1000} kg</p>
+          </div>
+          <div>
+            <h1>
+              <GiBodyHeight />
+            </h1>
+            <p>{(pokemons.height * 10) / 100} m</p>
+          </div>
+          <div>
+            <p>Moves</p>
+          </div>
+        </GridInfo>
         <div>
-          <h1><GiWeight/></h1>
-          <p>{(pokemons.weight*100)/1000} kg</p>
+          <p>{pokemons.text}</p>
         </div>
-        <div>
-          <h1><GiBodyHeight/></h1>
-          <p>{(pokemons.height*10)/100} m</p>
-        </div>
-        <div>
-          <p>Moves</p>
-        </div>
-        <div><p>{pokemons.text}</p></div>
-        <Titles><h2>Base Stats</h2></Titles>
+        <Titles>
+          <h2>Base Stats</h2>
+        </Titles>
       </ContainerStats>
     </ContainerDetails>
   );
