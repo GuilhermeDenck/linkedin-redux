@@ -19,7 +19,7 @@ const Details = (reducers: any) => {
   const { id } = useParams();
   const { pokemons, dispatch, loading } = reducers;
   console.log(reducers)
-  
+
   useEffect(() => {
     pokemonActions.setPokemonDetails(id, dispatch);
     // eslint-disable-next-line
@@ -31,7 +31,7 @@ const Details = (reducers: any) => {
 
   return (
     <ContainerDetails
-      // color={pokemonActions.setPokemonColor(pokemons.type[0].type.name)}
+      color={pokemonActions.setPokemonColor(pokemons?.type?.name)}
     >
       <ImgPokeball src={pokeballBack} alt="pokebola" />
       <HeaderDetails>
@@ -47,9 +47,12 @@ const Details = (reducers: any) => {
         <ImgPokemon
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemons.id}.png`}
           alt={pokemons.name}
-        />
+          />
       </DivPokemon>
-      <ContainerStats></ContainerStats>
+      <ContainerStats>
+          <h1>{pokemons.type?.name}</h1>
+
+      </ContainerStats>
     </ContainerDetails>
   );
 };
