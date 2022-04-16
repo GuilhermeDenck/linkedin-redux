@@ -1,8 +1,8 @@
 import styled from 'styled-components';
 
-export const ContainerDetails = styled.div`
+export const ContainerDetails = styled.div<{ color: string }>`
   width: 700px;
-  background-color: #a8a77a;
+  background-color: ${props => props.color};
   border-radius: 12px;
   padding: 20px;
   margin-top: 50px;

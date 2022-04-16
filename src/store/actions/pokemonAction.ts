@@ -48,7 +48,7 @@ export const setPokemonDetails = async (idPokemon?: string, dispatch?: any) => {
       id: details.data.id,
       name: details.data.name,
       picture: details.data.sprites.front_default,
-      type: details.data.types,
+      type: details.data.types[0].type,
       weight: details.data.weight,
       height: details.data.height,
       abilities: details.data.abilities,

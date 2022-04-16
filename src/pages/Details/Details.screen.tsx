@@ -21,6 +21,7 @@ import pokeballBack from '../../images/pokeball_back.png';
 const Details = (reducers: any) => {
   const { id } = useParams();
   const { pokemons, dispatch, loading } = reducers;
+  console.log(reducers)
 
   useEffect(() => {
     pokemonActions.setPokemonDetails(id, dispatch);
@@ -33,7 +34,7 @@ const Details = (reducers: any) => {
 
   return (
     <ContainerDetails
-    // color={pokemonActions.setPokemonColor(pokemons.type[0].type.name)}
+      color={pokemonActions.setPokemonColor(pokemons?.type?.name)}
     >
       <ImgPokeball src={pokeballBack} alt="pokebola" />
       <HeaderDetails>
@@ -49,7 +50,7 @@ const Details = (reducers: any) => {
         <ImgPokemon
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemons.id}.png`}
           alt={pokemons.name}
-        />
+          />
       </DivPokemon>
       <ContainerStats>
         <Titles>
@@ -78,6 +79,8 @@ const Details = (reducers: any) => {
         <Titles>
           <h2>Base Stats</h2>
         </Titles>
+          <h1>{pokemons.type?.name}</h1>
+
       </ContainerStats>
     </ContainerDetails>
   );
