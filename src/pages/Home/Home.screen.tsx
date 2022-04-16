@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
+import { MdOutlineCatchingPokemon } from 'react-icons/md';
 
 import * as pokemonActions from '../../store/actions/pokemonAction';
 import {
@@ -45,7 +46,7 @@ const Home = (reducers: any) => {
   return (
     <Container>
       <ContainerFind>
-        <h1>Pokédex</h1>
+        <h1><MdOutlineCatchingPokemon /> Pokédex</h1>
         <InputFind
           type="text"
           onChange={(e) => handleSearch(e.target.value)}
