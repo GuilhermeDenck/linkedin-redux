@@ -13,15 +13,14 @@ const Details = (reducers: any) => {
   const { id } = useParams();
   const { pokemons, dispatch } = reducers;
 
-  
-  
   useEffect(() => {
     pokemonActions.setPokemonDetails(id, dispatch);
     // eslint-disable-next-line
   }, []);
-
+  console.log(pokemons);
+  
   return (
-    <ContainerDetails>
+    <ContainerDetails /*color={pokemonActions.setPokemonColor(pokemons.type[0].type.name)}*/>
       <HeaderDetails>
         <a href="/">Voltar</a>
         <h1>{pokemons.name}</h1>

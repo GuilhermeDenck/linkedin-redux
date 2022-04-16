@@ -3,10 +3,10 @@ import axios from 'axios';
 export const getPokemon = async (dispatch: any) => {
   dispatch({ type: 'RESET_STATE' });
   try {
-    // const {data} = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=151&offset=0`);
-    const { data } = await axios.get(
-      `https://pokeapi.co/api/v2/pokemon?limit=20&offset=0`
-    );
+    const {data} = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=151&offset=0`);
+    // const { data } = await axios.get(
+    //   `https://pokeapi.co/api/v2/pokemon?limit=20&offset=0`
+    // );
     getDetailsPokemon(dispatch, data.results);
   } catch (error) {
     console.log(error);
@@ -75,7 +75,7 @@ export const setPokemonColor = (type: string) => {
       return '#EE8130';
     case 'water':
       return '#6390F0';
-    case 'eletric':
+    case 'electric':
       return '#F7D02C';
     case 'grass':
       return '#7AC74C';
