@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { pokecolor } from '../../colors';
 
 export const ContainerDetails = styled.div`
   width: 600px;

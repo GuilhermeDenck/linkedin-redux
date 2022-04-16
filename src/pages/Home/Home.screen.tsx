@@ -12,7 +12,6 @@ import {
   InputFind,
 } from './Home.style';
 import Card from '../../components/Card/Card.component';
-import { pokecolor } from '../../colors';
 
 const Home = (reducers: any) => {
   const navigate = useNavigate();
@@ -40,7 +39,6 @@ const Home = (reducers: any) => {
 
   useEffect(() => {
     pokemonActions.getPokemon(dispatch);
-    console.log(pokecolor);
     // eslint-disable-next-line
   }, []);
 
@@ -58,14 +56,24 @@ const Home = (reducers: any) => {
       <ContainerPokemons>
         {setSearch
           ? pokeFind.map((pokemon: any) => (
-              <CardPokemon key={pokemon.id} color={pokemon.type[0].type.name}>
+              <CardPokemon
+                key={pokemon.id}
+                color={pokemonActions.setPokemonColor(
+                  pokemon.type[0].type.name
+                )}
+              >
                 <BtnPokemon onClick={() => navigate(`/${pokemon.id}`)}>
                   <Card obj={pokemon} />
                 </BtnPokemon>
               </CardPokemon>
             ))
           : pokemons.map((pokemon: any) => (
-              <CardPokemon key={pokemon.id} color={pokemon.type[0].type.name}>
+              <CardPokemon
+                key={pokemon.id}
+                color={pokemonActions.setPokemonColor(
+                  pokemon.type[0].type.name
+                )}
+              >
                 <BtnPokemon onClick={() => navigate(`/${pokemon.id}`)}>
                   <Card obj={pokemon} />
                 </BtnPokemon>

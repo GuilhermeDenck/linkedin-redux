@@ -1,5 +1,4 @@
 import styled from 'styled-components';
-import { pokecolor } from '../../colors';
 
 export const Container = styled.div`
   display: flex;
@@ -42,7 +41,7 @@ export const ContainerPokemons = styled.ul`
 `;
 
 export const CardPokemon = styled.li`
-  border: 3px solid #000;
+  border: 3px solid ${(({color}) => color)};
   border-radius: 8px;
 `;
 
