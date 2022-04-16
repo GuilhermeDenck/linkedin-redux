@@ -4,9 +4,6 @@ export const getPokemon = async (dispatch: any) => {
   dispatch({ type: 'RESET_STATE' });
   try {
     const {data} = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=151&offset=0`);
-    // const { data } = await axios.get(
-    //   `https://pokeapi.co/api/v2/pokemon?limit=20&offset=0`
-    // );
     getDetailsPokemon(dispatch, data.results);
   } catch (error) {
     console.log(error);

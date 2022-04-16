@@ -7,14 +7,13 @@ export const ContainerCard = styled.div`
 
 export const IdPokemon = styled.p`
   text-align: right;
-`
+  color: ${({ color }) => color};
+`;
 export const NamePokemon = styled.p`
   text-transform: capitalize;
-`
+`;
 
 export const ImgPokemon = styled.img`
   max-width: 150px;
   max-height: 120px;
 `;
-
-
