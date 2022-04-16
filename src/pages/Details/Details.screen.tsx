@@ -7,6 +7,7 @@ import * as pokemonActions from '../../store/actions/pokemonAction';
 import {
   ContainerDetails,
   ContainerStats,
+  DivPokemon,
   HeaderDetails,
   ImgPokeball,
   ImgPokemon,
@@ -16,50 +17,46 @@ import pokeballBack from '../../images/pokeball_back.png';
 
 const Details = (reducers: any) => {
   const { id } = useParams();
-  const { pokemons, dispatch } = reducers;
-  const [loading, setLoading] = useState(false);
-
+  const { pokemons, dispatch, loading } = reducers;
+  console.log(reducers)
+  
   useEffect(() => {
     pokemonActions.setPokemonDetails(id, dispatch);
     // eslint-disable-next-line
   }, []);
 
-  return loading ? (
-    <h1>Loading</h1>
-  ) : (
+  if(loading) {
+    return <h1>loading...</h1>
+  }
+
+  return (
     <ContainerDetails
-    /*color={pokemonActions.setPokemonColor(pokemons.type[0].type.name)}*/
+      // color={pokemonActions.setPokemonColor(pokemons.type[0].type.name)}
     >
       <ImgPokeball src={pokeballBack} alt="pokebola" />
       <HeaderDetails>
-        <h2>
+        <h1>
           <a href="/">
             <AiOutlineArrowLeft style={{ color: '#fff' }} />
           </a>
-        </h2>
-        <h2>{pokemons.name}</h2>
-        <h3>{`#${String(pokemons.id).padStart(3, '0')}`}</h3>
+        </h1>
+        <h1>{pokemons.name}</h1>
+        <h2>{`#${String(pokemons.id).padStart(3, '0')}`}</h2>
       </HeaderDetails>
-      <div>
+      <DivPokemon>
         <ImgPokemon
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemons.id}.png`}
           alt={pokemons.name}
         />
-      </div>
-      <ContainerStats>
-        <p>
-          Lorem ipsum dolor sit amet consectetur adipisicing elit. Perferendis,
-          unde facere ullam quas, dolorum ipsa, beatae totam itaque quis sint
-          culpa illum ratione quos laborum! Aliquid excepturi voluptatibus
-          consectetur architecto!
-        </p>
-      </ContainerStats>
+      </DivPokemon>
+      <ContainerStats></ContainerStats>
     </ContainerDetails>
   );
 };
 
 const mapStateToProps = (state: any) => ({
   pokemons: state.pokemonReducer.activePokemon,
+  loading: state.pokemonReducer.loading,
 });
 
 export default connect(mapStateToProps)(Details);

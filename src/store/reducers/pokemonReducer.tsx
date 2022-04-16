@@ -5,7 +5,8 @@ interface PokemonDTO {
 
 const INITIAL_STATE = {
   activePokemon: {},
-  pokemons: []
+  pokemons: [],
+  loading: true,
 }
 
 const pokemonReducer = ( state: PokemonDTO = INITIAL_STATE, action: any ) => {
@@ -13,14 +14,16 @@ const pokemonReducer = ( state: PokemonDTO = INITIAL_STATE, action: any ) => {
   if(action.type === 'SET_POKEMON_DETAILS') {
     return {
       ...state,
-      activePokemon: action.activePokemon
+      activePokemon: action.activePokemon,
+      loading: action.loading,
     }
   }
 
   if(action.type === 'SET_POKEMONS') {
     return {
       ...state,
-      pokemons: [...state.pokemons ,action.pokemons]
+      pokemons: [...state.pokemons ,action.pokemons],
+      loading: action.loading,
     }
   }
 

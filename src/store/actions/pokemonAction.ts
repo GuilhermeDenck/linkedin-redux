@@ -56,6 +56,7 @@ export const setPokemonDetails = async (idPokemon?: string, dispatch?: any) => {
     const PokemonDetails = {
       type: 'SET_POKEMON_DETAILS',
       activePokemon: PokemonDetailsObj,
+      loading: false,
     };
 
     dispatch(PokemonDetails);

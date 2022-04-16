@@ -8,6 +8,7 @@ export const Container = styled.div`
   background-color: #f7f7f7;
   border-radius: 12px;
   margin-top: 50px;
+  box-shadow: 0px 8px 16px 4px rgba(0, 0, 0, 0.25);
 `;
 
 export const ContainerFind = styled.div`
