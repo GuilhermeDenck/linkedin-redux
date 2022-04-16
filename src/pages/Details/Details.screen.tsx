@@ -21,7 +21,7 @@ import pokeballBack from '../../images/pokeball_back.png';
 const Details = (reducers: any) => {
   const { id } = useParams();
   const { pokemons, dispatch, loading } = reducers;
-  console.log(reducers)
+  
 
   useEffect(() => {
     pokemonActions.setPokemonDetails(id, dispatch);
@@ -34,7 +34,7 @@ const Details = (reducers: any) => {
 
   return (
     <ContainerDetails
-      color={pokemonActions.setPokemonColor(pokemons?.type?.name)}
+      color={ pokemonActions.setPokemonColor(pokemons?.colorType) }
     >
       <ImgPokeball src={pokeballBack} alt="pokebola" />
       <HeaderDetails>
@@ -54,6 +54,13 @@ const Details = (reducers: any) => {
       </DivPokemon>
       <ContainerStats>
         <Titles>
+          {
+            pokemons?.type?.map((type: any) => (
+              <div>
+                { type?.type?.name }
+              </div>
+            ))
+          }
           <h2>About</h2>
         </Titles>
         <GridInfo>
@@ -70,6 +77,11 @@ const Details = (reducers: any) => {
             <p>{(pokemons.height * 10) / 100} m</p>
           </div>
           <div>
+            {
+              pokemons?.abilities?.map( (abilities: any) => (
+                <p>{abilities.ability.name}</p>
+              ))
+            }
             <p>Moves</p>
           </div>
         </GridInfo>
@@ -78,9 +90,15 @@ const Details = (reducers: any) => {
         </div>
         <Titles>
           <h2>Base Stats</h2>
+          {
+            pokemons?.stats?.map((st: any) => (
+              <div>
+                <h1>{st?.stat?.name}</h1>
+                <p>{st?.base_stat}</p>
+              </div>
+            ))
+          }
         </Titles>
-          <h1>{pokemons.type?.name}</h1>
-
       </ContainerStats>
     </ContainerDetails>
   );
