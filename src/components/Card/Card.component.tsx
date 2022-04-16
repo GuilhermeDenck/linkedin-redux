@@ -7,8 +7,6 @@ import {
 } from './Card.style';
 
 const Card = (pokemon: any) => {
-  console.log(pokemon.obj.type[0].type.name);
-
   return (
     <ContainerCard>
       <IdPokemon
@@ -18,7 +16,11 @@ const Card = (pokemon: any) => {
         src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.obj.id}.png`}
         alt={pokemon.obj.name}
       />
-      <NamePokemon>{pokemon.obj.name}</NamePokemon>
+      <NamePokemon
+        color={pokemonActions.setPokemonColor(pokemon.obj.type[0].type.name)}
+      >
+        {pokemon.obj.name}
+      </NamePokemon>
     </ContainerCard>
   );
 };

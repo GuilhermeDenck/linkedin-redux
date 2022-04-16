@@ -54,6 +54,6 @@ export const BtnPokemon = styled.button`
   border-radius: 8px;
   width: 200px;
   height: 190px;
-  padding: 10px;
+  padding: 0;
   cursor: pointer;
 `;
