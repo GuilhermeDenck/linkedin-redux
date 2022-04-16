@@ -41,14 +41,17 @@ export const ContainerPokemons = styled.ul`
   list-style: none;
 `;
 
-export const CardPokemon = styled.button`
+export const CardPokemon = styled.li`
+  border: 3px solid #000;
+  border-radius: 8px;
+`;
+
+export const BtnPokemon = styled.button`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  border: 3px solid ${props => (
-    'white'
-  )};
+  border: none;
   border-radius: 8px;
   width: 200px;
   height: 190px;

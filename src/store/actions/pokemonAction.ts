@@ -61,3 +61,9 @@ export const setPokemonDetails = async (idPokemon?: string, dispatch?: any) => {
     console.log(error); 
   }
 }
+
+export const sortPokemon = (data: any) => {
+  data.sort((a: any, b: any) => {
+    return a.id - b.id;
+  });
+};

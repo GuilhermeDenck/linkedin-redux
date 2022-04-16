@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 
 import * as pokemonActions from '../../store/actions/pokemonAction';
 import {
+  BtnPokemon,
   CardPokemon,
   Container,
   ContainerFind,
@@ -20,13 +21,7 @@ const Home = (reducers: any) => {
   const [setSearch, setSearchPokemon] = useState<boolean>(false);
   const [pokeFind, setPokeFind] = useState<any>({});
 
-  const sortPokemon = (data: any) => {
-    data.sort((a: any, b: any) => {
-      return a.id - b.id;
-    });
-  };
-
-  sortPokemon(pokemons);
+  pokemonActions.sortPokemon(pokemons);
 
   const handleSearch = (value: string) => {
     const regex = new RegExp(value, 'gim');
@@ -45,7 +40,7 @@ const Home = (reducers: any) => {
 
   useEffect(() => {
     pokemonActions.getPokemon(dispatch);
-    console.log(pokecolor)
+    console.log(pokecolor);
     // eslint-disable-next-line
   }, []);
 
@@ -63,18 +58,18 @@ const Home = (reducers: any) => {
       <ContainerPokemons>
         {setSearch
           ? pokeFind.map((pokemon: any) => (
-              <li key={pokemon.id}>
-                <CardPokemon onClick={() => navigate(`/${pokemon.id}`)} color={pokemon.type[0].type.name}>
+              <CardPokemon key={pokemon.id} color={pokemon.type[0].type.name}>
+                <BtnPokemon onClick={() => navigate(`/${pokemon.id}`)}>
                   <Card obj={pokemon} />
-                </CardPokemon>
-              </li>
+                </BtnPokemon>
+              </CardPokemon>
             ))
           : pokemons.map((pokemon: any) => (
-              <li key={pokemon.id}>
-                <CardPokemon onClick={() => navigate(`/${pokemon.id}`)}>
+              <CardPokemon key={pokemon.id} color={pokemon.type[0].type.name}>
+                <BtnPokemon onClick={() => navigate(`/${pokemon.id}`)}>
                   <Card obj={pokemon} />
-                </CardPokemon>
-              </li>
+                </BtnPokemon>
+              </CardPokemon>
             ))}
       </ContainerPokemons>
     </Container>
