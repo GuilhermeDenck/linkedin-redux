@@ -1,28 +1,34 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { ContainerDetails, ContainerStats, HeaderDetails } from './Details.style';
+import {
+  ContainerDetails,
+  ContainerStats,
+  HeaderDetails,
+} from './Details.style';
 
 import * as pokemonActions from '../../store/actions/pokemonAction';
 
 const Details = (reducers: any) => {
   const { id } = useParams();
   const { pokemons, dispatch } = reducers;
-  const { type } = pokemons;
 
+  
+  
   useEffect(() => {
-    pokemonActions.setPokemonDetails(id, dispatch)
+    pokemonActions.setPokemonDetails(id, dispatch);
+    // eslint-disable-next-line
   }, []);
 
   return (
     <ContainerDetails>
       <HeaderDetails>
+        <a href="/">Voltar</a>
         <h1>{pokemons.name}</h1>
-        <h2>{pokemons.id}</h2>
-        {/* <p>{type}</p> */}
+        <h2>{`#${String(pokemons.id).padStart(3, '0')}`}</h2>
       </HeaderDetails>
       <ContainerStats>
-        <h1>About</h1>
+        <p>About</p>
       </ContainerStats>
     </ContainerDetails>
   );

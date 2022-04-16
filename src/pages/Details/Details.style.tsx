@@ -1,16 +1,21 @@
 import styled from 'styled-components';
-import { pokecolor } from '../../components/colors';
+import { pokecolor } from '../../colors';
 
 export const ContainerDetails = styled.div`
   width: 600px;
-  background-color: ${props => pokecolor.grass};
+  background-color: green;
   border-radius: 12px;
-  padding: 5px
+  padding: 10px;
+  margin-top: 50px;
 `;
 
 export const HeaderDetails = styled.div`
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
+  height: 70px;
+  padding: 10px;
+  color: #fff;
+  text-transform: capitalize;
 `;
 
 export const ContainerStats = styled.div`

@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { pokecolor } from '../../colors';
 
 export const Container = styled.div`
   display: flex;
@@ -8,6 +9,25 @@ export const Container = styled.div`
   background-color: #f7f7f7;
   border-radius: 12px;
   margin-top: 50px;
+`;
+
+export const ContainerFind = styled.div`
+  width: 100%;
+  padding: 20px 40px;
+`;
+
+export const InputFind = styled.input`
+  border: 1px solid #e0e0e0;
+  border-radius: 8px;
+  width: 100%;
+  height: 40px;
+  padding: 0 15px;
+  font-size: large;
+
+  ::placeholder {
+    text-align: center;
+    font-size: medium;
+  }
 `;
 
 export const ContainerPokemons = styled.ul`
@@ -21,20 +41,17 @@ export const ContainerPokemons = styled.ul`
   list-style: none;
 `;
 
-export const ImgPokemon = styled.img`
-  max-width: 150px;
-  max-height: 120px;
-`;
-
 export const CardPokemon = styled.button`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
-  border: none;
+  border: 3px solid ${props => (
+    'white'
+  )};
   border-radius: 8px;
   width: 200px;
   height: 190px;
   padding: 10px;
   cursor: pointer;
-`
+`;
