@@ -17,7 +17,7 @@ import Card from '../../components/Card/Card.component';
 const Home = (reducers: any) => {
   const navigate = useNavigate();
 
-  const { pokemons, dispatch } = reducers;
+  const { pokemons, dispatch, loading } = reducers;
   const [setSearch, setSearchPokemon] = useState<boolean>(false);
   const [pokeFind, setPokeFind] = useState<any>({});
 
@@ -42,6 +42,10 @@ const Home = (reducers: any) => {
     pokemonActions.getPokemon(dispatch);
     // eslint-disable-next-line
   }, []);
+
+  if(loading) {
+    return <h1>Loading...</h1>
+  }
 
   return (
     <Container>
@@ -87,6 +91,7 @@ const Home = (reducers: any) => {
 
 const mapStateToProps = (state: any) => ({
   pokemons: state.pokemonReducer.pokemons,
+  loading: state.pokemonReducer.loading,
 });
 
 export default connect(mapStateToProps)(Home);

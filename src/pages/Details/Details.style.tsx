@@ -20,9 +20,10 @@ export const HeaderDetails = styled.div`
 
 export const ContainerStats = styled.div`
   display: flex;
+  flex-direction: column;
   background-color: #fff;
   border-radius: 8px;
-  padding-top: 100px;
+  padding: 100px 20px 20px 20px;
 `;
 
 export const ImgPokeball = styled.img`
@@ -32,6 +33,9 @@ export const ImgPokeball = styled.img`
   z-index: 1;
 `;
 
+export const DivPokemon = styled.div`
+  height: 290px;
+`
 export const ImgPokemon = styled.img`
   position: absolute;
   max-width: 400px;
@@ -39,6 +43,8 @@ export const ImgPokemon = styled.img`
   z-index: 100;
 `;
 
-export const DivPokemon = styled.div`
-  height: 290px;
+export const Titles = styled.div`
+  text-align: center;
+  color: '';
 `
+

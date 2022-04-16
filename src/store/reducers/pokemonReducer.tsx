@@ -16,7 +16,7 @@ const pokemonReducer = ( state: PokemonDTO = INITIAL_STATE, action: any ) => {
       ...state,
       activePokemon: action.activePokemon,
       loading: action.loading,
-    }
+    }    
   }
 
   if(action.type === 'SET_POKEMONS') {

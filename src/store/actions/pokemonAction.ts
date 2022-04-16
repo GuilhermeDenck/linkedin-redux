@@ -3,7 +3,9 @@ import axios from 'axios';
 export const getPokemon = async (dispatch: any) => {
   dispatch({ type: 'RESET_STATE' });
   try {
-    const {data} = await axios.get(`https://pokeapi.co/api/v2/pokemon?limit=20&offset=0`);
+    const { data } = await axios.get(
+      `https://pokeapi.co/api/v2/pokemon?limit=20&offset=0`
+    );
     getDetailsPokemon(dispatch, data.results);
   } catch (error) {
     console.log(error);
@@ -23,6 +25,7 @@ export const getDetailsPokemon = async (dispatch: any, results: any) => {
       const Pokemons = {
         type: 'SET_POKEMONS',
         pokemons: pokemons,
+        loading: false,
       };
 
       dispatch(Pokemons);
