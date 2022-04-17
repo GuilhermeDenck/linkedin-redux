@@ -2,7 +2,6 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { MdOutlineCatchingPokemon } from 'react-icons/md';
-
 import * as pokemonActions from '../../store/actions/pokemonAction';
 import {
   BtnPokemon,
@@ -43,14 +42,16 @@ const Home = (reducers: any) => {
     // eslint-disable-next-line
   }, []);
 
-  if(loading) {
-    return <h1>Loading...</h1>
+  if (loading) {
+    return <></>;
   }
 
   return (
     <Container>
       <ContainerFind>
-        <h1><MdOutlineCatchingPokemon /> Pokédex</h1>
+        <h1>
+          <MdOutlineCatchingPokemon /> Pokédex
+        </h1>
         <InputFind
           type="text"
           onChange={(e) => handleSearch(e.target.value)}

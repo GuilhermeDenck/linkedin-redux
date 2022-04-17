@@ -11,6 +11,7 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-y: scroll;
+  background: url('../src/images/body_bg.png') #fff repeat;
 }
 
 code {
@@ -18,7 +19,7 @@ code {
     monospace;
 }
 
-#root{
+#root {
   display: flex;
   justify-content: center;
 }

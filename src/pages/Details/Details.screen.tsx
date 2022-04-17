@@ -9,11 +9,17 @@ import {
   ContainerDetails,
   ContainerStats,
   DivPokemon,
+  FlavorText,
+  GridCell,
   GridInfo,
   HeaderDetails,
   ImgPokeball,
   ImgPokemon,
-  Titles,
+  Pills,
+  PokeMeasures,
+  Subtitle,
+  Title,
+  TypePills,
 } from './Details.style';
 
 import pokeballBack from '../../images/pokeball_back.png';
@@ -21,7 +27,6 @@ import pokeballBack from '../../images/pokeball_back.png';
 const Details = (reducers: any) => {
   const { id } = useParams();
   const { pokemons, dispatch, loading } = reducers;
-  
 
   useEffect(() => {
     pokemonActions.setPokemonDetails(id, dispatch);
@@ -34,9 +39,9 @@ const Details = (reducers: any) => {
 
   return (
     <ContainerDetails
-      color={ pokemonActions.setPokemonColor(pokemons?.colorType) }
+      color={pokemonActions.setPokemonColor(pokemons?.colorType)}
     >
-      <ImgPokeball src={pokeballBack} alt="pokebola" />
+      <ImgPokeball src={pokeballBack} alt="pokeball" />
       <HeaderDetails>
         <h1>
           <a href="/">
@@ -50,55 +55,58 @@ const Details = (reducers: any) => {
         <ImgPokemon
           src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemons.id}.png`}
           alt={pokemons.name}
-          />
+        />
       </DivPokemon>
       <ContainerStats>
-        <Titles>
-          {
-            pokemons?.type?.map((type: any) => (
-              <div>
-                { type?.type?.name }
-              </div>
-            ))
-          }
+        <TypePills>
+          {pokemons?.type?.map((type: any) => (
+            <Pills
+              key={type?.type?.name}
+              color={pokemonActions.setPokemonColor(type?.type?.name)}
+            >
+              {type?.type?.name}
+            </Pills>
+          ))}
+        </TypePills>
+        <Title color={pokemonActions.setPokemonColor(pokemons?.colorType)}>
           <h2>About</h2>
-        </Titles>
+        </Title>
         <GridInfo>
-          <div>
-            <h1>
-              <GiWeight />
-            </h1>
-            <p>{(pokemons.weight * 100) / 1000} kg</p>
-          </div>
-          <div>
-            <h1>
-              <GiBodyHeight />
-            </h1>
-            <p>{(pokemons.height * 10) / 100} m</p>
-          </div>
-          <div>
-            {
-              pokemons?.abilities?.map( (abilities: any) => (
-                <p>{abilities.ability.name}</p>
-              ))
-            }
-            <p>Moves</p>
-          </div>
+          <GridCell>
+            <PokeMeasures>
+              <GiWeight fontSize={'32px'} />
+              <p>{(pokemons.weight * 100) / 1000} kg</p>
+            </PokeMeasures>
+            <Subtitle>Width</Subtitle>
+          </GridCell>
+          <GridCell>
+            <PokeMeasures>
+              <GiBodyHeight fontSize={'32px'} />
+              <p>{(pokemons.height * 10) / 100} m</p>
+            </PokeMeasures>
+            <Subtitle>Height</Subtitle>
+          </GridCell>
+          <GridCell>
+            <div>
+              {pokemons?.abilities?.map((skill: any) => (
+                <p key={skill.ability.name}>{skill.ability.name}</p>
+              ))}
+            </div>
+            <Subtitle>Moves</Subtitle>
+          </GridCell>
         </GridInfo>
-        <div>
+        <FlavorText>
           <p>{pokemons.text}</p>
-        </div>
-        <Titles>
+        </FlavorText>
+        <Title color={pokemonActions.setPokemonColor(pokemons?.colorType)}>
           <h2>Base Stats</h2>
-          {
-            pokemons?.stats?.map((st: any) => (
-              <div>
-                <h1>{st?.stat?.name}</h1>
-                <p>{st?.base_stat}</p>
-              </div>
-            ))
-          }
-        </Titles>
+        </Title>
+        {pokemons?.stats?.map((st: any) => (
+          <div key={st?.stat?.name}>
+            <h1>{st?.stat?.name}</h1>
+            <p>{st?.base_stat}</p>
+          </div>
+        ))}
       </ContainerStats>
     </ContainerDetails>
   );
