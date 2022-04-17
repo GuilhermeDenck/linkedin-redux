@@ -1,10 +1,10 @@
 import styled from 'styled-components';
 
-export const ContainerDetails = styled.div<{ color: string }>`
+export const ContainerDetails = styled.div`
   width: 700px;
   background-color: ${(props) => props.color};
   border-radius: 12px;
-  padding: 20px;
+  padding: 15px 10px;
   margin: 50px 0;
   box-shadow: 0px 8px 16px 4px rgba(0, 0, 0, 0.25);
 `;
@@ -34,7 +34,7 @@ export const ImgPokeball = styled.img`
 `;
 
 export const DivPokemon = styled.div`
-  height: 290px;
+  height: 300px;
 `;
 
 export const ImgPokemon = styled.img`
@@ -69,12 +69,12 @@ export const Title = styled.div`
 export const GridInfo = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  height: 130px;
+  min-height: 150px;
   justify-items: center;
   padding: 30px 0;
 `;
 
-export const GridCell = styled.div`
+export const GridInfoCell = styled.div`
   display: grid;
   grid-template-rows: 3fr 1fr;
   align-items: center;
@@ -95,8 +95,29 @@ export const PokeMeasures = styled.div`
 
 export const Subtitle = styled.small`
   font-size: 12px;
+  color: #666666;
 `;
 
 export const FlavorText = styled.div`
-  margin-bottom: 20px;
+  padding: 20px;
+`;
+
+export const GridStats = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 5fr;
+  margin-top: 20px;
+`;
+
+export const GridStatsCell = styled.div`
+  :first-child {
+    text-align: right;
+    font-weight: bold;
+    padding-right: 10px;
+    border-right: 2px solid #e0e0e0;
+    color: ${(props) => props.color};
+  }
+
+  :last-child {
+    padding-left: 10px;
+  }
 `;

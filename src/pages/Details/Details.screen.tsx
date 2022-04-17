@@ -10,8 +10,10 @@ import {
   ContainerStats,
   DivPokemon,
   FlavorText,
-  GridCell,
   GridInfo,
+  GridInfoCell,
+  GridStats,
+  GridStatsCell,
   HeaderDetails,
   ImgPokeball,
   ImgPokemon,
@@ -72,28 +74,28 @@ const Details = (reducers: any) => {
           <h2>About</h2>
         </Title>
         <GridInfo>
-          <GridCell>
+          <GridInfoCell>
             <PokeMeasures>
               <GiWeight fontSize={'32px'} />
               <p>{(pokemons.weight * 100) / 1000} kg</p>
             </PokeMeasures>
             <Subtitle>Width</Subtitle>
-          </GridCell>
-          <GridCell>
+          </GridInfoCell>
+          <GridInfoCell>
             <PokeMeasures>
               <GiBodyHeight fontSize={'32px'} />
               <p>{(pokemons.height * 10) / 100} m</p>
             </PokeMeasures>
             <Subtitle>Height</Subtitle>
-          </GridCell>
-          <GridCell>
+          </GridInfoCell>
+          <GridInfoCell>
             <div>
               {pokemons?.abilities?.map((skill: any) => (
                 <p key={skill.ability.name}>{skill.ability.name}</p>
               ))}
             </div>
             <Subtitle>Moves</Subtitle>
-          </GridCell>
+          </GridInfoCell>
         </GridInfo>
         <FlavorText>
           <p>{pokemons.text}</p>
@@ -101,12 +103,23 @@ const Details = (reducers: any) => {
         <Title color={pokemonActions.setPokemonColor(pokemons?.colorType)}>
           <h2>Base Stats</h2>
         </Title>
-        {pokemons?.stats?.map((st: any) => (
-          <div key={st?.stat?.name}>
-            <h1>{st?.stat?.name}</h1>
-            <p>{st?.base_stat}</p>
-          </div>
-        ))}
+        <GridStats>
+          <GridStatsCell color={pokemonActions.setPokemonColor(pokemons?.colorType)}>
+            <p>HP</p>
+            <p>ATK</p>
+            <p>DEF</p>
+            <p>SATK</p>
+            <p>SDEF</p>
+            <p>SPD</p>
+          </GridStatsCell>
+          <GridStatsCell>
+            {pokemons?.stats?.map((st: any) => (
+              <div key={st?.stat?.name}>
+                <p>{String(st?.base_stat).padStart(3, '0')}</p>
+              </div>
+            ))}
+          </GridStatsCell>
+        </GridStats>
       </ContainerStats>
     </ContainerDetails>
   );

@@ -55,7 +55,7 @@ const Home = (reducers: any) => {
         <InputFind
           type="text"
           onChange={(e) => handleSearch(e.target.value)}
-          placeholder="Procurar"
+          placeholder="Search"
         />
       </ContainerFind>
 
