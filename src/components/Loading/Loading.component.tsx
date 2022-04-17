@@ -4,7 +4,7 @@ import { DivLoadingBall } from './Loading.style';
 const Loading = () => {
   return (
     <DivLoadingBall>
-      <img src={LoadingBall} alt='pokeball spinning'/>   
+      <img src={LoadingBall} alt="pokeball spinning" />
     </DivLoadingBall>
   );
 };

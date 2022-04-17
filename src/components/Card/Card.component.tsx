@@ -26,4 +26,5 @@ const Card = (pokemon: any) => {
     </ContainerCard>
   );
 };
+
 export default Card;

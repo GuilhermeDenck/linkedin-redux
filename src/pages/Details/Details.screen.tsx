@@ -39,11 +39,10 @@ const Details = (reducers: any) => {
     pokemonActions.setPokemonDetails(id, dispatch);
     // eslint-disable-next-line
   }, []);
-  
-  return (
-    activePokeLoading ? (
-      <Loading />
-    ) : (
+
+  return activePokeLoading ? (
+    <Loading />
+  ) : (
     <ContainerDetails
       color={pokemonActions.setPokemonColor(pokemons?.colorType)}
     >
@@ -138,7 +137,6 @@ const Details = (reducers: any) => {
         </GridStats>
       </ContainerStats>
     </ContainerDetails>
-    )
   );
 };
 

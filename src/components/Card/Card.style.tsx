@@ -10,14 +10,16 @@ export const IdPokemon = styled.p`
   color: ${({ color }) => color};
   padding: 5px;
 `;
+
 export const NamePokemon = styled.p`
   text-transform: capitalize;
   color: #fff;
   background-color: ${({ color }) => color};
   width: 100%;
-  height: calc(100% - 146px);
+  height: calc(100% - 145px);
   padding: 15px 0;
   margin: 0;
+  
 `;
 
 export const ImgPokemon = styled.img`

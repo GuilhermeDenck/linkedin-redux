@@ -44,6 +44,10 @@ export const ContainerPokemons = styled.ul`
 export const CardPokemon = styled.li`
   border: 3px solid ${(({color}) => color)};
   border-radius: 8px;
+  :hover {
+    transform: scale(1.03);
+    transition: 0.3s ease;
+  }
 `;
 
 export const BtnPokemon = styled.button`
