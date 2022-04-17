@@ -42,7 +42,7 @@ const Home = (reducers: any) => {
     pokemonActions.getPokemon(dispatch);
     // eslint-disable-next-line
   }, []);
-
+  
   return (
     <Container>
       <ContainerFind>
@@ -55,6 +55,7 @@ const Home = (reducers: any) => {
           placeholder="Search"
         />
       </ContainerFind>
+  
       {loading ? (
         <Loading />
       ) : (

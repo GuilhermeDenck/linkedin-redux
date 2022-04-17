@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { rgba } from 'polished';
 
 export const ContainerDetails = styled.div`
@@ -137,14 +137,19 @@ export const NumStats = styled.div`
 export const BarStats = styled.div<{ color: string }>`
   background-color: ${(props) => rgba(props.color, 0.2)};
   flex-grow: 1;
-  height: 5px;
+  height: 6px;
   margin-left: 10px;
   border-radius: 4px;
 `;
 
+const growup = keyframes`
+  from { width: 0; }
+  to { transform: scalex(fit-content); }
+`;
+
 export const FillBarStats = styled.div<{ fulfill: number }>`
   background-color: ${(props) => props.color};
-  height: 5px;
-  width: ${(props) => props.fulfill}px;
-  border-radius: 4px 0 0 4px;
+  height: 6px;
+  width: calc((${(props) => props.fulfill}% * 100)/255);
+  animation: 1s ease-in ${growup};
 `;
