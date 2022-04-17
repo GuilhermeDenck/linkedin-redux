@@ -6,9 +6,12 @@ import { GiWeight, GiBodyHeight } from 'react-icons/gi';
 import * as pokemonActions from '../../store/actions/pokemonAction';
 
 import {
+  BarStats,
+  ContainerBars,
   ContainerDetails,
   ContainerStats,
   DivPokemon,
+  FillBarStats,
   FlavorText,
   GridInfo,
   GridInfoCell,
@@ -17,6 +20,7 @@ import {
   HeaderDetails,
   ImgPokeball,
   ImgPokemon,
+  NumStats,
   Pills,
   PokeMeasures,
   Subtitle,
@@ -104,7 +108,9 @@ const Details = (reducers: any) => {
           <h2>Base Stats</h2>
         </Title>
         <GridStats>
-          <GridStatsCell color={pokemonActions.setPokemonColor(pokemons?.colorType)}>
+          <GridStatsCell
+            color={pokemonActions.setPokemonColor(pokemons?.colorType)}
+          >
             <p>HP</p>
             <p>ATK</p>
             <p>DEF</p>
@@ -114,9 +120,19 @@ const Details = (reducers: any) => {
           </GridStatsCell>
           <GridStatsCell>
             {pokemons?.stats?.map((st: any) => (
-              <div key={st?.stat?.name}>
-                <p>{String(st?.base_stat).padStart(3, '0')}</p>
-              </div>
+              <ContainerBars key={st?.stat?.name}>
+                <NumStats>
+                  <p>{String(st?.base_stat).padStart(3, '0')}</p>
+                </NumStats>
+                <BarStats
+                  color={pokemonActions.setPokemonColor(pokemons?.colorType)}
+                >
+                  <FillBarStats
+                    color={pokemonActions.setPokemonColor(pokemons?.colorType)}
+                    fulfill={st?.base_stat}
+                  />
+                </BarStats>
+              </ContainerBars>
             ))}
           </GridStatsCell>
         </GridStats>

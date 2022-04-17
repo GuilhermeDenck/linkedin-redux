@@ -1,4 +1,5 @@
 import styled from 'styled-components';
+import { rgba } from 'polished';
 
 export const ContainerDetails = styled.div`
   width: 700px;
@@ -104,8 +105,9 @@ export const FlavorText = styled.div`
 
 export const GridStats = styled.div`
   display: grid;
-  grid-template-columns: 1fr 5fr;
+  grid-template-columns: 0.1fr 1fr;
   margin-top: 20px;
+  padding: 0 20px;
 `;
 
 export const GridStatsCell = styled.div`
@@ -120,4 +122,29 @@ export const GridStatsCell = styled.div`
   :last-child {
     padding-left: 10px;
   }
+`;
+
+export const ContainerBars = styled.div`
+  display: flex;
+  align-items: center;
+  text-align: right;
+`;
+
+export const NumStats = styled.div`
+  width: 35px;
+`;
+
+export const BarStats = styled.div<{ color: string }>`
+  background-color: ${(props) => rgba(props.color, 0.2)};
+  flex-grow: 1;
+  height: 5px;
+  margin-left: 10px;
+  border-radius: 4px;
+`;
+
+export const FillBarStats = styled.div<{ fulfill: number }>`
+  background-color: ${(props) => props.color};
+  height: 5px;
+  width: ${(props) => props.fulfill}px;
+  border-radius: 4px 0 0 4px;
 `;
