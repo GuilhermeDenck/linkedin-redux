@@ -12,6 +12,7 @@ import {
   ContainerPokemons,
   InputFind,
 } from './Home.style';
+import Loading from '../../components/Loading/Loading.component';
 
 const Home = (reducers: any) => {
   const navigate = useNavigate();
@@ -42,10 +43,6 @@ const Home = (reducers: any) => {
     // eslint-disable-next-line
   }, []);
 
-  if (loading) {
-    return <div>Loading</div>;
-  }
-
   return (
     <Container>
       <ContainerFind>
@@ -58,34 +55,37 @@ const Home = (reducers: any) => {
           placeholder="Search"
         />
       </ContainerFind>
-
-      <ContainerPokemons>
-        {setSearch
-          ? pokeFind.map((pokemon: any) => (
-              <CardPokemon
-                key={pokemon.id}
-                color={pokemonActions.setPokemonColor(
-                  pokemon.type[0].type.name
-                )}
-              >
-                <BtnPokemon onClick={() => navigate(`/${pokemon.id}`)}>
-                  <Card obj={pokemon} />
-                </BtnPokemon>
-              </CardPokemon>
-            ))
-          : pokemons.map((pokemon: any) => (
-              <CardPokemon
-                key={pokemon.id}
-                color={pokemonActions.setPokemonColor(
-                  pokemon.type[0].type.name
-                )}
-              >
-                <BtnPokemon onClick={() => navigate(`/${pokemon.id}`)}>
-                  <Card obj={pokemon} />
-                </BtnPokemon>
-              </CardPokemon>
-            ))}
-      </ContainerPokemons>
+      {loading ? (
+        <Loading />
+      ) : (
+        <ContainerPokemons>
+          {setSearch
+            ? pokeFind.map((pokemon: any) => (
+                <CardPokemon
+                  key={pokemon.id}
+                  color={pokemonActions.setPokemonColor(
+                    pokemon.type[0].type.name
+                  )}
+                >
+                  <BtnPokemon onClick={() => navigate(`/details/${pokemon.id}`)}>
+                    <Card obj={pokemon} />
+                  </BtnPokemon>
+                </CardPokemon>
+              ))
+            : pokemons.map((pokemon: any) => (
+                <CardPokemon
+                  key={pokemon.id}
+                  color={pokemonActions.setPokemonColor(
+                    pokemon.type[0].type.name
+                  )}
+                >
+                  <BtnPokemon onClick={() => navigate(`/details/${pokemon.id}`)}>
+                    <Card obj={pokemon} />
+                  </BtnPokemon>
+                </CardPokemon>
+              ))}
+        </ContainerPokemons>
+      )}
     </Container>
   );
 };

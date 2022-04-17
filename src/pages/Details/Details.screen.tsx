@@ -39,10 +39,6 @@ const Details = (reducers: any) => {
     // eslint-disable-next-line
   }, []);
 
-  if (loading) {
-    return <h1>loading...</h1>;
-  }
-
   return (
     <ContainerDetails
       color={pokemonActions.setPokemonColor(pokemons?.colorType)}
