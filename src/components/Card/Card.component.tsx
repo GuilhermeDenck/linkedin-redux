@@ -12,10 +12,12 @@ const Card = (pokemon: any) => {
       <IdPokemon
         color={pokemonActions.setPokemonColor(pokemon.obj.type[0].type.name)}
       >{`#${String(pokemon.obj.id).padStart(3, '0')}`}</IdPokemon>
-      <ImgPokemon
-        src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.obj.id}.png`}
-        alt={pokemon.obj.name}
-      />
+      <div style={{ minHeight: 116 }}>
+        <ImgPokemon
+          src={`https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${pokemon.obj.id}.png`}
+          alt={pokemon.obj.name}
+        />
+      </div>
       <NamePokemon
         color={pokemonActions.setPokemonColor(pokemon.obj.type[0].type.name)}
       >

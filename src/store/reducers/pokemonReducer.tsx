@@ -5,16 +5,18 @@ interface PokemonDTO {
 
 const INITIAL_STATE = {
   activePokemon: {},
+  activePokeLoading: true,
   pokemons: [],
   loading: true,
 }
 
 const pokemonReducer = ( state: PokemonDTO = INITIAL_STATE, action: any ) => {
-
+    
   if(action.type === 'SET_POKEMON_DETAILS') {
     return {
       ...state,
       activePokemon: action.activePokemon,
+      activePokeLoading: action.activePokeLoading,
       loading: action.loading,
     }    
   }
@@ -24,6 +26,7 @@ const pokemonReducer = ( state: PokemonDTO = INITIAL_STATE, action: any ) => {
       ...state,
       pokemons: [...state.pokemons ,action.pokemons],
       loading: action.loading,
+      activePokeLoading: action.activePokeLoading,
     }
   }
 

@@ -24,8 +24,9 @@ export const getDetailsPokemon = async (dispatch: any, results: any) => {
 
       const Pokemons = {
         type: 'SET_POKEMONS',
-        pokemons: pokemons,
+        pokemons: pokemons,       
         loading: false,
+        activePokeLoading: true,
       };
 
       dispatch(Pokemons);
@@ -60,9 +61,10 @@ export const setPokemonDetails = async (idPokemon?: string, dispatch?: any) => {
     const PokemonDetails = {
       type: 'SET_POKEMON_DETAILS',
       activePokemon: PokemonDetailsObj,
-      loading: false,
+      activePokeLoading: false,
+      loading: true,
     };
-
+    
     dispatch(PokemonDetails);
   } catch (error) {
     console.log(error);

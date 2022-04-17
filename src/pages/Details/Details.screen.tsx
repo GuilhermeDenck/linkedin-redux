@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { GiWeight, GiBodyHeight } from 'react-icons/gi';
 import * as pokemonActions from '../../store/actions/pokemonAction';
+import Loading from '../../components/Loading/Loading.component';
 
 import {
   BarStats,
@@ -32,14 +33,17 @@ import pokeballBack from '../../images/pokeball_back.png';
 
 const Details = (reducers: any) => {
   const { id } = useParams();
-  const { pokemons, dispatch, loading } = reducers;
+  const { pokemons, dispatch, activePokeLoading } = reducers;
 
   useEffect(() => {
     pokemonActions.setPokemonDetails(id, dispatch);
     // eslint-disable-next-line
   }, []);
-
+  
   return (
+    activePokeLoading ? (
+      <Loading />
+    ) : (
     <ContainerDetails
       color={pokemonActions.setPokemonColor(pokemons?.colorType)}
     >
@@ -134,12 +138,13 @@ const Details = (reducers: any) => {
         </GridStats>
       </ContainerStats>
     </ContainerDetails>
+    )
   );
 };
 
 const mapStateToProps = (state: any) => ({
   pokemons: state.pokemonReducer.activePokemon,
-  loading: state.pokemonReducer.loading,
+  activePokeLoading: state.pokemonReducer.activePokeLoading,
 });
 
 export default connect(mapStateToProps)(Details);
