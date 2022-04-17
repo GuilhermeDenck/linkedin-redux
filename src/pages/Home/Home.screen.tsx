@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { connect } from 'react-redux';
 import { MdOutlineCatchingPokemon } from 'react-icons/md';
 import * as pokemonActions from '../../store/actions/pokemonAction';
+import Card from '../../components/Card/Card.component';
 import {
   BtnPokemon,
   CardPokemon,
@@ -11,7 +12,6 @@ import {
   ContainerPokemons,
   InputFind,
 } from './Home.style';
-import Card from '../../components/Card/Card.component';
 
 const Home = (reducers: any) => {
   const navigate = useNavigate();
@@ -43,7 +43,7 @@ const Home = (reducers: any) => {
   }, []);
 
   if (loading) {
-    return <></>;
+    return <div>Loading</div>;
   }
 
   return (
