@@ -1,8 +1,9 @@
 import { useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import { connect, RootStateOrAny } from 'react-redux';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { GiWeight, GiBodyHeight } from 'react-icons/gi';
+import Colors from '../../enums/ColorsEnums';
 import * as pokemonActions from '../../store/actions/pokemonAction';
 import Loading from '../../components/Loading/Loading.component';
 
@@ -34,17 +35,18 @@ import pokeballBack from '../../images/pokeball_back.png';
 const Details = (reducers: any) => {
   const { id } = useParams();
   const { pokemons, dispatch, activePokeLoading } = reducers;
+  const navigate = useNavigate();
 
   useEffect(() => {
-    pokemonActions.setPokemonDetails(id, dispatch);
+    pokemonActions.setPokemonDetails(id, dispatch, navigate);
     // eslint-disable-next-line
   }, []);
 
-  return activePokeLoading ? (
-    <Loading />
-  ) : (
+  if(activePokeLoading) return <Loading />
+
+  return (
     <ContainerDetails
-      color={pokemonActions.setPokemonColor(pokemons?.colorType)}
+      color={Colors[pokemons?.colorType]}
     >
       <ImgPokeball src={pokeballBack} alt="pokeball" />
       <HeaderDetails>
@@ -67,13 +69,13 @@ const Details = (reducers: any) => {
           {pokemons?.type?.map((type: any) => (
             <Pills
               key={type?.type?.name}
-              color={pokemonActions.setPokemonColor(type?.type?.name)}
+              color={Colors[type?.type?.name]}
             >
               {type?.type?.name}
             </Pills>
           ))}
         </TypePills>
-        <Title color={pokemonActions.setPokemonColor(pokemons?.colorType)}>
+        <Title color={Colors[pokemons?.colorType]}>
           <h2>About</h2>
         </Title>
         <GridInfo>
@@ -82,7 +84,7 @@ const Details = (reducers: any) => {
               <GiWeight fontSize={'32px'} />
               <p>{(pokemons.weight * 100) / 1000} kg</p>
             </PokeMeasures>
-            <Subtitle>Width</Subtitle>
+            <Subtitle>Weigth</Subtitle>
           </GridInfoCell>
           <GridInfoCell>
             <PokeMeasures>
@@ -103,12 +105,12 @@ const Details = (reducers: any) => {
         <FlavorText>
           <p>{pokemons.text}</p>
         </FlavorText>
-        <Title color={pokemonActions.setPokemonColor(pokemons?.colorType)}>
+        <Title color={Colors[pokemons?.colorType]}>
           <h2>Base Stats</h2>
         </Title>
         <GridStats>
           <GridStatsCell
-            color={pokemonActions.setPokemonColor(pokemons?.colorType)}
+            color={Colors[pokemons?.colorType]}
           >
             <p>HP</p>
             <p>ATK</p>
@@ -124,10 +126,10 @@ const Details = (reducers: any) => {
                   <p>{String(st?.base_stat).padStart(3, '0')}</p>
                 </NumStats>
                 <BarStats
-                  color={pokemonActions.setPokemonColor(pokemons?.colorType)}
+                  color={Colors[pokemons?.colorType]}
                 >
                   <FillBarStats
-                    color={pokemonActions.setPokemonColor(pokemons?.colorType)}
+                    color={Colors[pokemons?.colorType]}
                     fulfill={st?.base_stat}
                   />
                 </BarStats>

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { connect, RootStateOrAny } from 'react-redux';
 import { MdOutlineCatchingPokemon } from 'react-icons/md';
+import Colors from '../../enums/ColorsEnums';
 import * as pokemonActions from '../../store/actions/pokemonAction';
 import Card from '../../components/Card/Card.component';
 import {
@@ -40,7 +41,6 @@ const Home = (reducers: any) => {
 
   useEffect(() => {
     pokemonActions.getPokemon(dispatch);
-    // eslint-disable-next-line
   }, []);
   
   return (
@@ -64,9 +64,7 @@ const Home = (reducers: any) => {
             ? pokeFind.map((pokemon: any) => (
                 <CardPokemon
                   key={pokemon.id}
-                  color={pokemonActions.setPokemonColor(
-                    pokemon.type[0].type.name
-                  )}
+                  color={Colors[pokemon?.type[0]?.type?.name]}
                 >
                   <BtnPokemon onClick={() => navigate(`/details/${pokemon.id}`)}>
                     <Card obj={pokemon} />
@@ -76,9 +74,7 @@ const Home = (reducers: any) => {
             : pokemons.map((pokemon: any) => (
                 <CardPokemon
                   key={pokemon.id}
-                  color={pokemonActions.setPokemonColor(
-                    pokemon.type[0].type.name
-                  )}
+                  color={Colors[pokemon?.type[0]?.type?.name]}
                 >
                   <BtnPokemon onClick={() => navigate(`/details/${pokemon.id}`)}>
                     <Card obj={pokemon} />
