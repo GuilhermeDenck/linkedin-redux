@@ -4,6 +4,7 @@ import { connect, RootStateOrAny } from 'react-redux';
 import { MdOutlineCatchingPokemon } from 'react-icons/md';
 import Colors from '../../enums/ColorsEnums';
 import * as pokemonActions from '../../store/actions/pokemonAction';
+import { PokemonDTO, PokemonsFilterDTO } from '../../models/PokemonDTO';
 import Card from '../../components/Card/Card.component';
 import {
   BtnPokemon,
@@ -16,18 +17,20 @@ import {
 import Loading from '../../components/Loading/Loading.component';
 
 const Home = (reducers: any) => {
+  
   const navigate = useNavigate();
-
+ 
   const { pokemons, dispatch, loading } = reducers;
   const [setSearch, setSearchPokemon] = useState<boolean>(false);
-  const [pokeFind, setPokeFind] = useState<Array<object>>([{}]);
+  const [pokeFind, setPokeFind] = useState<Array<PokemonsFilterDTO>>([]);
 
   pokemonActions.sortPokemon(pokemons);
 
   const handleSearch = (value: string) => {
     const regex = new RegExp(value, 'gim');
 
-    const pokemonsFiltered = pokemons.filter((pokemon: any) => {
+    const pokemonsFiltered = pokemons.filter((pokemon: PokemonDTO) => {
+      
       return pokemon.name.match(regex);
     });
 
@@ -61,7 +64,7 @@ const Home = (reducers: any) => {
       ) : (
         <ContainerPokemons>
           {setSearch
-            ? pokeFind.map((pokemon: any) => (
+            ? pokeFind.map((pokemon: PokemonsFilterDTO) => (
                 <CardPokemon
                   key={pokemon.id}
                   color={Colors[pokemon?.type[0]?.type?.name]}
@@ -71,7 +74,7 @@ const Home = (reducers: any) => {
                   </BtnPokemon>
                 </CardPokemon>
               ))
-            : pokemons.map((pokemon: any) => (
+            : pokemons.map((pokemon: PokemonDTO) => (
                 <CardPokemon
                   key={pokemon.id}
                   color={Colors[pokemon?.type[0]?.type?.name]}

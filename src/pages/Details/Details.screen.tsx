@@ -5,6 +5,7 @@ import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { GiWeight, GiBodyHeight } from 'react-icons/gi';
 import Colors from '../../enums/ColorsEnums';
 import * as pokemonActions from '../../store/actions/pokemonAction';
+import { PokeSkills, PokeStats, PokeType } from '../../models/PokemonDTO';
 import Loading from '../../components/Loading/Loading.component';
 
 import {
@@ -66,7 +67,7 @@ const Details = (reducers: any) => {
       </DivPokemon>
       <ContainerStats>
         <TypePills>
-          {pokemons?.type?.map((type: any) => (
+          {pokemons?.type?.map((type: PokeType) => (
             <Pills
               key={type?.type?.name}
               color={Colors[type?.type?.name]}
@@ -95,7 +96,7 @@ const Details = (reducers: any) => {
           </GridInfoCell>
           <GridInfoCell>
             <div>
-              {pokemons?.abilities?.map((skill: any) => (
+              {pokemons?.abilities?.map((skill: PokeSkills) => (
                 <p key={skill.ability.name}>{skill.ability.name}</p>
               ))}
             </div>
@@ -120,17 +121,17 @@ const Details = (reducers: any) => {
             <p>SPD</p>
           </GridStatsCell>
           <GridStatsCell>
-            {pokemons?.stats?.map((st: any) => (
-              <ContainerBars key={st?.stat?.name}>
+            {pokemons?.stats?.map((stat: PokeStats) => (
+              <ContainerBars key={stat?.stat?.name}>
                 <NumStats>
-                  <p>{String(st?.base_stat).padStart(3, '0')}</p>
+                  <p>{String(stat?.base_stat).padStart(3, '0')}</p>
                 </NumStats>
                 <BarStats
                   color={Colors[pokemons?.colorType]}
                 >
                   <FillBarStats
                     color={Colors[pokemons?.colorType]}
-                    fulfill={st?.base_stat}
+                    fulfill={stat?.base_stat}
                   />
                 </BarStats>
               </ContainerBars>

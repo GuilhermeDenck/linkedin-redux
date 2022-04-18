@@ -1,4 +1,3 @@
-import * as pokemonActions from '../../store/actions/pokemonAction';
 import Colors from '../../enums/ColorsEnums';
 import {
   ContainerCard,

@@ -1,4 +1,5 @@
 import axios from 'axios';
+import { PokemonsDTO } from '../../models/PokemonDTO';
 
 export const getPokemon = async (dispatch: any) => {
   dispatch({ type: 'RESET_STATE' });
@@ -37,6 +38,7 @@ export const getDetailsPokemon = async (dispatch: any, results: Array<object>) =
 };
 
 export const setPokemonDetails = async (idPokemon?: string, dispatch?: any, navigate?: any) => {
+  
   try {
     const details = await axios.get(
       `https://pokeapi.co/api/v2/pokemon/${idPokemon}/`
@@ -50,14 +52,14 @@ export const setPokemonDetails = async (idPokemon?: string, dispatch?: any, navi
       name: details.data.name,
       picture: details.data.sprites.front_default,
       type: details.data.types,
-      colorType: details.data.types[0].type.name,
+      colorType: details.data.types[0]?.type.name,
       weight: details.data.weight,
       height: details.data.height,
       abilities: details.data.abilities,
       stats: details.data.stats,
-      text: species.data.flavor_text_entries[10].flavor_text,
+      text: species.data.flavor_text_entries[10]?.flavor_text,
     };
-
+    
     const PokemonDetails = {
       type: 'SET_POKEMON_DETAILS',
       activePokemon: PokemonDetailsObj,
@@ -72,7 +74,7 @@ export const setPokemonDetails = async (idPokemon?: string, dispatch?: any, navi
   }
 };
 
-export const sortPokemon = (data: any) => {
+export const sortPokemon = (data: Array<PokemonsDTO>) => {
   data.sort((a: any, b: any) => {
     return a.id - b.id;
   });
