@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { connect, RootStateOrAny } from 'react-redux';
 import { MdOutlineCatchingPokemon } from 'react-icons/md';
 import * as pokemonActions from '../../store/actions/pokemonAction';
 import Card from '../../components/Card/Card.component';
@@ -19,7 +19,7 @@ const Home = (reducers: any) => {
 
   const { pokemons, dispatch, loading } = reducers;
   const [setSearch, setSearchPokemon] = useState<boolean>(false);
-  const [pokeFind, setPokeFind] = useState<any>({});
+  const [pokeFind, setPokeFind] = useState<Array<object>>([{}]);
 
   pokemonActions.sortPokemon(pokemons);
 
@@ -91,7 +91,7 @@ const Home = (reducers: any) => {
   );
 };
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: RootStateOrAny) => ({
   pokemons: state.pokemonReducer.pokemons,
   loading: state.pokemonReducer.loading,
 });

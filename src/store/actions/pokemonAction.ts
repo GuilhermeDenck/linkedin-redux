@@ -12,7 +12,7 @@ export const getPokemon = async (dispatch: any) => {
   }
 };
 
-export const getDetailsPokemon = async (dispatch: any, results: any) => {
+export const getDetailsPokemon = async (dispatch: any, results: Array<object>) => {
   results.forEach(async (element: any) => {
     try {
       const { data } = await axios.get(element.url);

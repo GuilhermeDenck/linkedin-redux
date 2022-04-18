@@ -1,3 +1,5 @@
+import { AnyAction } from 'redux';
+
 interface PokemonDTO {
   activePokemon: {};
   pokemons: {}[];
@@ -10,7 +12,7 @@ const INITIAL_STATE = {
   loading: true,
 };
 
-const pokemonReducer = (state: PokemonDTO = INITIAL_STATE, action: any) => {
+const pokemonReducer = (state: PokemonDTO = INITIAL_STATE, action: AnyAction) => {
   if (action.type === 'SET_POKEMON_DETAILS') {
     return {
       ...state,

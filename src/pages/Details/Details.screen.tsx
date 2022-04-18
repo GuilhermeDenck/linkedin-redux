@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
-import { connect } from 'react-redux';
+import { connect, RootStateOrAny } from 'react-redux';
 import { AiOutlineArrowLeft } from 'react-icons/ai';
 import { GiWeight, GiBodyHeight } from 'react-icons/gi';
 import * as pokemonActions from '../../store/actions/pokemonAction';
@@ -140,7 +140,7 @@ const Details = (reducers: any) => {
   );
 };
 
-const mapStateToProps = (state: any) => ({
+const mapStateToProps = (state: RootStateOrAny) => ({
   pokemons: state.pokemonReducer.activePokemon,
   activePokeLoading: state.pokemonReducer.activePokeLoading,
 });
